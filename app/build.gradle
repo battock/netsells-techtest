@@ -31,7 +31,7 @@ android {
 
 def lifeCycleDependencies = "1.1.1"
 def rxJavaVersion = "2.2.0"
-def retrofitVersion = "2.2.0"
+def retrofitVersion = "2.3.0"
 
 
 dependencies {
@@ -54,9 +54,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$rxJavaVersion"
 
 
-    implementation "com.squareup.retrofit2.retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2.convertor-json:$retrofitVersion"
-    implementation "com.squareup.retrofit2.adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
 
     testImplementation 'junit:junit:4.12'
