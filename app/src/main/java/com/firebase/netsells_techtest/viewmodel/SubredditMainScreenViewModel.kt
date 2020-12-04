@@ -8,6 +8,7 @@ class SubredditMainScreenViewModel : ViewModel() {
 
 
     //the title of the main page
+    //would ultimately come from a cms file but for sake of this task i am just hard coding here
     val hotlistHeader ="hot submission title"
 
     //retrieves data and updates the UI
