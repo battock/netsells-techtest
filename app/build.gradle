@@ -10,10 +10,17 @@ android {
         applicationId "com.firebase.netsells_techtest"
         minSdkVersion 23
         targetSdkVersion 28
+        multiDexEnabled=true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+            dataBinding {
+                enabled = true
+            }
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -31,6 +38,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation "com.android.support:multidex:1.0.1"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'

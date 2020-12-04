@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hot_list_entries">
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+        <item>Hot list Entry</item>
+    </string-array>
+
+</resources>
