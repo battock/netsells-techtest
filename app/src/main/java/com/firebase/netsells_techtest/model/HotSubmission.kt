@@ -1,7 +1,27 @@
 package com.firebase.netsells_techtest.model
 
+import com.google.gson.annotations.SerializedName
+
 data class HotSubmission (
-    val itemId:Int = 0,
-    val title:String? = "",
-    val author:String? = ""
+    @SerializedName("modhash") val modhash : String,
+    @SerializedName("dist") val dist : Int,
+    @SerializedName("children") val children : List<RedditApiResponseChildren>,
+    @SerializedName("after") val after : String,
+    @SerializedName("before") val before : String
+)
+
+data class HotSubApiResponse(
+    @SerializedName("kind") val kind : String,
+    @SerializedName("data") val hotSubmissionData : HotSubmission
+)
+
+
+data class RedditApiResponseChildren (
+    @SerializedName("kind") val kind : String,
+    @SerializedName("data") val data : HotSubData
+)
+
+data class HotSubData (
+    @SerializedName("author_fullname") val author : String,
+    @SerializedName("title") val title : String
 )
