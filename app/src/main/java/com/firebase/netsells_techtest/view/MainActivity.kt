@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.firebase.netsells_techtest.R
+import com.firebase.netsells_techtest.databinding.*
 import com.firebase.netsells_techtest.viewmodel.SubredditMainScreenViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,6 @@ class MainActivity : AppCompatActivity() {
         //instantiate the viewmodel
         viewModel = ViewModelProvider(this).get(SubredditMainScreenViewModel::class.java)
 
-        //viewModel.updateView()
+        viewModel.updateView()
     }
 }

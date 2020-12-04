@@ -4,4 +4,11 @@ import androidx.lifecycle.ViewModel
 
 class SubredditMainScreenViewModel : ViewModel() {
 
+
+
+    //retrieves data and updates the UI
+    fun updateView() {
+
+    }
+
 }
