@@ -1,10 +1,8 @@
 package com.firebase.netsells_techtest.viewmodel
 
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.firebase.netsells_techtest.data.HotSubmissionsApi
 import com.firebase.netsells_techtest.data.HotSubmissionsService
 import com.firebase.netsells_techtest.data.LoadingState
 import com.firebase.netsells_techtest.model.RedditApiResponseChildren

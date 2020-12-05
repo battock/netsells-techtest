@@ -1,7 +1,6 @@
 package com.firebase.netsells_techtest.data
 
 import com.firebase.netsells_techtest.model.HotSubApiResponse
-import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

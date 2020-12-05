@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat.startActivity
 import com.firebase.netsells_techtest.databinding.HotSubmissionListItemBinding
 import com.firebase.netsells_techtest.model.HotSubData
-import com.firebase.netsells_techtest.model.RedditApiResponseChildren
 
 
 class HotSubmissionCustomAdapter(context: Context, var items: List<HotSubData>) :

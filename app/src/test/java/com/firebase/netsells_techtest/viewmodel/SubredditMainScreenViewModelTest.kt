@@ -2,26 +2,18 @@ package com.firebase.netsells_techtest.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.firebase.netsells_techtest.data.HotSubmissionsService
-import com.firebase.netsells_techtest.model.HotSubApiResponse
 import com.firebase.netsells_techtest.model.HotSubData
-import com.firebase.netsells_techtest.model.HotSubmission
 import com.firebase.netsells_techtest.model.RedditApiResponseChildren
 import com.firebase.netsells_techtest.view.LIST_INCREMENT
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runner.Runner
-import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.*
-import org.powermock.api.mockito.PowerMockito
 import org.powermock.core.classloader.annotations.PrepareForTest
-import javax.security.auth.callback.Callback
 
-@PrepareForTest(HotSubmissionsService::class)
 class SubredditMainScreenViewModelTest {
 
     private lateinit var viewModel: SubredditMainScreenViewModel
@@ -153,12 +145,6 @@ class SubredditMainScreenViewModelTest {
     }
     //</editor-fold>
 
-    @Test
-    fun isApiStateLoadingWhenApiIsCalled() {
-        val hotSubSpy = Mockito.spy(HotSubmissionsService::class.java)
-        //val spyViewModel = PowerMockito.spy(SubredditMainScreenViewModel::class.java)
-        viewModel.fetchData()
 
-    }
 
 }
