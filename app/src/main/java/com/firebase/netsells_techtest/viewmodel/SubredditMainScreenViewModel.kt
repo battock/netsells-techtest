@@ -10,20 +10,17 @@ import com.firebase.netsells_techtest.data.LoadingState
 import com.firebase.netsells_techtest.model.RedditApiResponseChildren
 import com.firebase.netsells_techtest.model.HotSubApiResponse
 import com.firebase.netsells_techtest.model.HotSubData
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.observers.DisposableSingleObserver
-import io.reactivex.schedulers.Schedulers
+import com.firebase.netsells_techtest.view.LIST_INCREMENT
 import retrofit2.Call
 import retrofit2.Response
-import javax.inject.Inject
-import javax.security.auth.callback.Callback
 
 
 class SubredditMainScreenViewModel(private val hotSubmissionsService: HotSubmissionsService) :
     ViewModel() {
 
+    private var numberOfItemsToDisplay: Int = LIST_INCREMENT
     private val LOGGING_TAG = this.javaClass.simpleName
+
 
     //the title of the main page
     //would ultimately come from a cms file but for sake of this task i am just hard coding here
@@ -32,7 +29,7 @@ class SubredditMainScreenViewModel(private val hotSubmissionsService: HotSubmiss
 
     val loadingState = MutableLiveData<LoadingState>(LoadingState.NOT_LOADING)
     val apiDataList = MutableLiveData<List<HotSubData>>()
-
+    var allApiItemsList: List<HotSubData>? = listOf()
 
     //retrieves data and updates the UI
     fun fetchData() {
@@ -50,7 +47,8 @@ class SubredditMainScreenViewModel(private val hotSubmissionsService: HotSubmiss
             override fun onResponse(call: Call<HotSubApiResponse>,apiResponse: Response<HotSubApiResponse>)
             {
                 loadingState.value = LoadingState.SUCCESS
-                apiDataList.value = formatText(apiResponse?.body()?.hotSubmissionData?.children)
+                allApiItemsList = formatText(apiResponse?.body()?.hotSubmissionData?.children)
+                addMoreListItems()
                 Log.d(
                     LOGGING_TAG,
                     "api success with ${apiResponse?.body()?.hotSubmissionData?.children}"
@@ -75,6 +73,14 @@ class SubredditMainScreenViewModel(private val hotSubmissionsService: HotSubmiss
             }
         }
         return returnList
+    }
+
+    fun addMoreListItems() {
+          apiDataList.value = allApiItemsList?.take(numberOfItemsToDisplay)
+        if (numberOfItemsToDisplay < allApiItemsList?.size?:0) {
+            val incrememntNumber = if(numberOfItemsToDisplay+ LIST_INCREMENT<allApiItemsList?.size?:0){numberOfItemsToDisplay}else{allApiItemsList?.size?:0}
+            numberOfItemsToDisplay += incrememntNumber
+        }
     }
 
 

@@ -59,4 +59,6 @@ class HotSubmissionCustomAdapter(context: Context, var items: List<HotSubData>) 
     override fun getItem(position:Int): HotSubData? {
         return items?.get(position)
     }
+
+
 }
