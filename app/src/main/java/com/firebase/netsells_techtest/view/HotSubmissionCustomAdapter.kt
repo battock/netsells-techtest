@@ -1,18 +1,21 @@
 package com.firebase.netsells_techtest.view
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import com.firebase.netsells_techtest.databinding.HotSubmissionListItemBinding
 import com.firebase.netsells_techtest.model.HotSubData
 import com.firebase.netsells_techtest.model.RedditApiResponseChildren
 
-class HotSubmissionCustomAdapter(context: Context, var items: List<RedditApiResponseChildren>) :
-    ArrayAdapter<RedditApiResponseChildren>(context, 0,items) {
+
+class HotSubmissionCustomAdapter(context: Context, var items: List<HotSubData>) :
+    ArrayAdapter<HotSubData>(context, 0,items) {
 
     private val LOGGING_TAG: String? = this.javaClass.simpleName
     init {
@@ -25,14 +28,25 @@ class HotSubmissionCustomAdapter(context: Context, var items: List<RedditApiResp
             parent,
             false
         )
-        binding.hotSubmissionItem = getItem(position)?.data
-        (binding.root).setOnClickListener{click->
-           Toast.makeText(this.context, "${getItem(position)?.data?.author} clicked", Toast.LENGTH_SHORT).show()
+
+        binding.hotSubmissionItem = getItem(position)
+
+        (binding.root).setOnClickListener{
+            openWebLink(getItem(position)?.url)
         }
         return binding.root
     }
 
-    fun refreshList(newList: List<RedditApiResponseChildren>) {
+
+    private fun openWebLink(url:String?) {
+        url.let {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url ?: "")
+            startActivity(context, intent, null)
+        }
+    }
+
+    fun refreshList(newList: List<HotSubData>) {
         Log.d(LOGGING_TAG, "main list updating with $newList")
         this.items = newList
         notifyDataSetChanged()
@@ -42,7 +56,7 @@ class HotSubmissionCustomAdapter(context: Context, var items: List<RedditApiResp
     override fun getCount(): Int {
         return items.count()
     }
-    override fun getItem(position:Int): RedditApiResponseChildren? {
+    override fun getItem(position:Int): HotSubData? {
         return items?.get(position)
     }
 }

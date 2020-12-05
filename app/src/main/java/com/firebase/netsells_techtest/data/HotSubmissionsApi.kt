@@ -9,5 +9,5 @@ import retrofit2.http.GET
 
 interface HotSubmissionsApi {
     @GET("Android/hot.json")
-    fun getHotSubmissionsList(): Single<HotSubApiResponse>
+    fun getHotSubmissionsList(): Call<HotSubApiResponse>
 }
