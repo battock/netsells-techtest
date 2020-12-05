@@ -1,10 +1,10 @@
 package com.firebase.netsells_techtest.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.firebase.netsells_techtest.R
 import com.firebase.netsells_techtest.data.HotSubmissionsService
 import com.firebase.netsells_techtest.model.HotSubData
 import com.firebase.netsells_techtest.model.RedditApiResponseChildren
-import com.firebase.netsells_techtest.view.LIST_INCREMENT
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
@@ -15,6 +15,8 @@ import org.mockito.Mockito.*
 import org.powermock.core.classloader.annotations.PrepareForTest
 
 class SubredditMainScreenViewModelTest {
+
+    private val LIST_INCREMENT = 8
 
     private lateinit var viewModel: SubredditMainScreenViewModel
 

@@ -3,12 +3,12 @@ package com.firebase.netsells_techtest.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.firebase.netsells_techtest.R
 import com.firebase.netsells_techtest.data.HotSubmissionsService
 import com.firebase.netsells_techtest.data.LoadingState
 import com.firebase.netsells_techtest.model.RedditApiResponseChildren
 import com.firebase.netsells_techtest.model.HotSubApiResponse
 import com.firebase.netsells_techtest.model.HotSubData
-import com.firebase.netsells_techtest.view.LIST_INCREMENT
 import retrofit2.Call
 import retrofit2.Response
 
@@ -16,7 +16,8 @@ import retrofit2.Response
 class SubredditMainScreenViewModel(private val hotSubmissionsService: HotSubmissionsService) :
     ViewModel() {
 
-    private var numberOfItemsToDisplay: Int = LIST_INCREMENT
+    //set from main activity based on res file
+    var numberOfItemsToDisplay = 0
     private val LOGGING_TAG = this.javaClass.simpleName
 
 
@@ -76,7 +77,7 @@ class SubredditMainScreenViewModel(private val hotSubmissionsService: HotSubmiss
     fun addMoreListItems() {
           apiDataList.value = allApiItemsList?.take(numberOfItemsToDisplay)
         if (numberOfItemsToDisplay < allApiItemsList?.size?:0) {
-            val incrememntNumber = if(numberOfItemsToDisplay+ LIST_INCREMENT<allApiItemsList?.size?:0){numberOfItemsToDisplay}else{allApiItemsList?.size?:0}
+            val incrememntNumber = if(numberOfItemsToDisplay+ numberOfItemsToDisplay<allApiItemsList?.size?:0){numberOfItemsToDisplay}else{allApiItemsList?.size?:0}
             numberOfItemsToDisplay += incrememntNumber
         }
     }

@@ -1,5 +1,6 @@
 package com.firebase.netsells_techtest.view
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -19,7 +20,6 @@ import com.firebase.netsells_techtest.viewmodel.SubRedditViewModelFactory
 import com.firebase.netsells_techtest.viewmodel.SubredditMainScreenViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-const val LIST_INCREMENT = 10
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,15 +30,26 @@ class MainActivity : AppCompatActivity() {
     private lateinit var listItems: List<RedditApiResponseChildren>
     private lateinit var listAdapter: HotSubmissionCustomAdapter
 
+    private var listIncrement = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        listIncrement = resources.getInteger(R.integer.maxlistsize)
+
+
+        //ensure screen does not rotate
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED)
 
         //instantiate the viewmodel
         viewModelFactory = SubRedditViewModelFactory(HotSubmissionsService())
         viewModel =ViewModelProvider(this, viewModelFactory)
             .get(SubredditMainScreenViewModel::class.java)
+
+
+        //set list increment value
+        viewModel.numberOfItemsToDisplay = listIncrement
 
         //create data binding layout
         val binding: ActivityMainBinding =
@@ -109,9 +120,6 @@ class MainActivity : AppCompatActivity() {
         var currentVisibleItemCount = 0
         var itemCount = 0
         var currentScrollState = 0
-        var loadingMore = false
-        var startIndex = 0L
-        var offset = 10L
 
         listAdapter = HotSubmissionCustomAdapter(this, arrayListOf())
         hotSubmissionsList.adapter = listAdapter
