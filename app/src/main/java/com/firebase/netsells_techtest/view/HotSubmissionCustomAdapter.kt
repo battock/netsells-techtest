@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.firebase.netsells_techtest.databinding.HotSubmissionListItemBinding
 import com.firebase.netsells_techtest.model.HotSubData
 import com.firebase.netsells_techtest.model.RedditApiResponseChildren
@@ -24,9 +25,10 @@ class HotSubmissionCustomAdapter(context: Context, var items: List<RedditApiResp
             parent,
             false
         )
-
         binding.hotSubmissionItem = getItem(position)?.data
-
+        (binding.root).setOnClickListener{click->
+           Toast.makeText(this.context, "${getItem(position)?.data?.author} clicked", Toast.LENGTH_SHORT).show()
+        }
         return binding.root
     }
 
@@ -35,6 +37,7 @@ class HotSubmissionCustomAdapter(context: Context, var items: List<RedditApiResp
         this.items = newList
         notifyDataSetChanged()
     }
+
 
     override fun getCount(): Int {
         return items.count()

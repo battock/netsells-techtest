@@ -2,6 +2,7 @@ package com.firebase.netsells_techtest.view
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.firebase.netsells_techtest.R
 import com.firebase.netsells_techtest.data.LoadingState
 import com.firebase.netsells_techtest.databinding.ActivityMainBinding
+import com.firebase.netsells_techtest.model.HotSubData
 import com.firebase.netsells_techtest.model.RedditApiResponseChildren
 import com.firebase.netsells_techtest.viewmodel.SubredditMainScreenViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -47,15 +49,15 @@ class MainActivity : AppCompatActivity() {
         viewModel.loadingState.observe(this, Observer<LoadingState> { loadingState ->
             when (loadingState) {
                 LoadingState.LOADING -> {
-                   Toast.makeText(this, "Loading", Toast.LENGTH_LONG).show()
+                    startLoadingSpinner()
                 }
                 LoadingState.ERROR -> {
-                    Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
+                    stopLoadingSpinner()
                 }
                 LoadingState.SUCCESS -> {
-                    Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
+                    stopLoadingSpinner()
                 }
-                else ->Toast.makeText(this, "", Toast.LENGTH_LONG).show()
+                else ->{}
             }
             Log.d(LOGGING_TAG, "loading state changed to $loadingState")
     })
@@ -67,6 +69,15 @@ class MainActivity : AppCompatActivity() {
 
 }
 
+    private fun startLoadingSpinner() {
+        Log.d(LOGGING_TAG,"api is losding so starting loading animation")
+        progress_circular.visibility = View.VISIBLE
+    }
+
+
+    private fun stopLoadingSpinner() {
+        Log.d(LOGGING_TAG,"loading animation stopping")
+        progress_circular.visibility = View.INVISIBLE    }
 
 
     private fun createList() {
