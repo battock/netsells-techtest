@@ -1,11 +1,13 @@
 package com.firebase.netsells_techtest.view
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AbsListView
 import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -85,6 +87,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 LoadingState.ERROR -> {
                     stopLoadingSpinner()
+                    showErrorDialog()
                 }
                 LoadingState.SUCCESS -> {
                     stopLoadingSpinner()
@@ -101,6 +104,37 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+    //show error dialog
+    //just a simple alert dialog to cover this part of the journey
+    private fun showErrorDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Error")
+            .setMessage("Sorry, something went wrong")
+            .setPositiveButton("Try again") {
+                    dialog, tryAgainClick -> tryAgain()
+            }
+            .setNegativeButton( "quit app"){
+                    dialog, tryAgainClick -> quitApp()
+            }
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show()
+            }
+
+    //forces th app to close
+    private fun quitApp() {
+        Log.d(LOGGING_TAG, "error, quit app selected, app is quitting")
+        val i = Intent("android.intent.action.ACTION_REQUEST_SHUTDOWN")
+        i.putExtra("android.intent.extra.KEY_CONFIRM", true)
+        startActivity(i)
+    }
+
+    //retrys the api call
+    private fun tryAgain(){
+        Log.d(LOGGING_TAG, "error, try again triggerd")
+        viewModel.fetchData()
+    }
+
     //While api is loading we see a spinner
     private fun startLoadingSpinner() {
         Log.d(LOGGING_TAG, "api is losding so starting loading animation")
