@@ -4,8 +4,8 @@
     <dimen name="hot_list_author_top_margin">10dp</dimen>
     <dimen name="hot_list_divider_line_top_margin">15dp</dimen>
     <dimen name="hot_list_margin">5dp</dimen>
-    <dimen name="header_text_size">36sp</dimen>
+    <dimen name="header_text_size">26sp</dimen>
     <dimen name="list_item_post_text_size">18sp</dimen>
-    <dimen name="list_item_author_text_size">14sp</dimen>
+    <dimen name="list_item_author_text_size">15sp</dimen>
     <dimen name="list_item_padding">5dp</dimen>
 </resources>

@@ -93,6 +93,8 @@ class MainActivity : AppCompatActivity() {
                     stopLoadingSpinner()
                 }
                 else -> {
+                    stopLoadingSpinner()
+                    showErrorDialog()
                 }
             }
             Log.d(LOGGING_TAG, "loading state changed to $loadingState")
