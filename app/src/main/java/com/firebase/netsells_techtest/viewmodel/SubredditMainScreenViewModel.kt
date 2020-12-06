@@ -74,6 +74,10 @@ class SubredditMainScreenViewModel(private val hotSubmissionsService: HotSubmiss
         return returnList
     }
 
+
+    //this method adds some more items to the list view depending on screen size
+    //not all items from the api call are displayed on screen until user has scrolled
+    //all the way down
     fun addMoreListItems() {
           apiDataList.value = allApiItemsList?.take(numberOfItemsToDisplay)
         if (numberOfItemsToDisplay < allApiItemsList?.size?:0) {

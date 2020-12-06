@@ -117,7 +117,7 @@ class SubredditMainScreenViewModelTest {
             mockItemsList.add(HotSubData("", "", ""))
         }
         viewModel.allApiItemsList = mockItemsList
-
+        viewModel.numberOfItemsToDisplay = LIST_INCREMENT
         //do add more items method
         viewModel.addMoreListItems()
 
@@ -137,7 +137,7 @@ class SubredditMainScreenViewModelTest {
             mockItemsList.add(HotSubData("", "", ""))
         }
         viewModel.allApiItemsList = mockItemsList
-
+        viewModel.numberOfItemsToDisplay = LIST_INCREMENT
         //do add more items method
         viewModel.addMoreListItems()
 
